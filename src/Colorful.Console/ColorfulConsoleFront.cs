@@ -1228,6 +1228,12 @@ namespace Colorful
             if (!colorManager.IsInCompatibilityMode && isWindows)
                 new ColorMapper().SetBatchBufferColors(defaultColorMap);
         }
+        
+        public static void ReplaceAllColorsWithDefaults(bool useCompatibilityMode)
+        {
+            isInCompatibilityMode = useCompatibilityMode;
+            ReplaceAllColorsWithDefaults();
+        }
 
         public static void Beep(int frequency, int duration)
         {

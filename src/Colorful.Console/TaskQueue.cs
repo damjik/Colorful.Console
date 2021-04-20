@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 
 namespace Colorful
 {
-#if !NET40
     public class TaskQueue
     {
         private readonly SemaphoreSlim _semaphore;
@@ -40,5 +39,4 @@ namespace Colorful
             }
         }
     }
-#endif
 }

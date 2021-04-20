@@ -78,19 +78,14 @@ namespace Colorful
 
             try
             {
-#if NETSTANDARD2_0
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-#endif
                     return GetConsoleColorNative(color);
-
-#if NETSTANDARD2_0
                 }
                 else
                 {
                     return color.ToNearestConsoleColor();
                 }
-#endif
             }
             // If no NETSTANDARD2_0, but still not running on Windows, catch the exception and approximate the requested color.
             catch
@@ -111,12 +106,7 @@ namespace Colorful
         /// <returns></returns>
         public static bool IsWindows()
         {
-            bool isWindows = true;
-
-#if NETSTANDARD2_0
-            isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-#endif
-
+            var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
             return isWindows;
         }
 

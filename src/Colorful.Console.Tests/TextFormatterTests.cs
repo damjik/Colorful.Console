@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
-using Colorful;
 using System.Drawing;
 
 namespace Colorful.Console.Tests
@@ -35,7 +31,7 @@ namespace Colorful.Console.Tests
 
             List<KeyValuePair<string, Color>> formatMap = formatter.GetFormatMap(dummyFormatString, new object[] { dummyStringTrailer }, new Color[] { dummyStyledColor });
 
-            Assert.Equal(formatMap.Count, 2);
+            Assert.Equal(2, formatMap.Count);
         }
     }
 }

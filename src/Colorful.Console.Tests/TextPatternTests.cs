@@ -19,7 +19,7 @@ namespace Colorful.Console.Tests
         {
             TextPattern pattern = new TextPattern(dummyString);
 
-            Assert.Equal(pattern.GetMatchLocations(dummyString).Count(), 1);
+            Assert.Single(pattern.GetMatchLocations(dummyString));
         }
 
         [Fact]
@@ -28,7 +28,7 @@ namespace Colorful.Console.Tests
             string matchTarget = "666";
             TextPattern pattern = new TextPattern(dummyRegexPattern);
 
-            Assert.Equal(pattern.GetMatchLocations(matchTarget).Count(), 3);
+            Assert.Equal(3, pattern.GetMatchLocations(matchTarget).Count());
         }
 
         [Fact]

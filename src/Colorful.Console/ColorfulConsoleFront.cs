@@ -4,12 +4,14 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Linq;
+using System.Runtime.Versioning;
 
 namespace Colorful
 {
     /// <summary>
     ///     Wraps around the System.Console class, adding enhanced styling functionality.
     /// </summary>
+    [UnsupportedOSPlatform("browser")]
     public static partial class Console
     {
         public static Color BackgroundColor
@@ -21,15 +23,18 @@ namespace Colorful
         public static int BufferHeight
         {
             get => System.Console.BufferHeight;
+            [SupportedOSPlatform("windows")]
             set => System.Console.BufferHeight = value;
         }
 
         public static int BufferWidth
         {
             get => System.Console.BufferWidth;
+            [SupportedOSPlatform("windows")]
             set => System.Console.BufferWidth = value;
         }
 
+        [SupportedOSPlatform("windows")] 
         public static bool CapsLock => System.Console.CapsLock;
 
         public static int CursorLeft
@@ -41,6 +46,7 @@ namespace Colorful
         public static int CursorSize
         {
             get => System.Console.CursorSize;
+            [SupportedOSPlatform("windows")]
             set => System.Console.CursorSize = value;
         }
 
@@ -52,6 +58,7 @@ namespace Colorful
 
         public static bool CursorVisible
         {
+            [SupportedOSPlatform("windows")]
             get => System.Console.CursorVisible;
             set => System.Console.CursorVisible = value;
         }
@@ -72,13 +79,11 @@ namespace Colorful
             set => System.Console.InputEncoding = value;
         }
 
-#if !NET40
         public static bool IsErrorRedirected => System.Console.IsErrorRedirected;
 
         public static bool IsInputRedirected => System.Console.IsInputRedirected;
 
         public static bool IsOutputRedirected => System.Console.IsOutputRedirected;
-#endif
 
         public static bool KeyAvailable => System.Console.KeyAvailable;
 
@@ -86,6 +91,7 @@ namespace Colorful
 
         public static int LargestWindowWidth => System.Console.LargestWindowWidth;
 
+        [SupportedOSPlatform("windows")]
         public static bool NumberLock => System.Console.NumberLock;
 
         public static TextWriter Out => System.Console.Out;
@@ -98,6 +104,7 @@ namespace Colorful
 
         public static string Title
         {
+            [SupportedOSPlatform("windows")]
             get => System.Console.Title;
             set => System.Console.Title = value;
         }
@@ -111,24 +118,28 @@ namespace Colorful
         public static int WindowHeight
         {
             get => System.Console.WindowHeight;
+            [SupportedOSPlatform("windows")]
             set => System.Console.WindowHeight = value;
         }
 
         public static int WindowLeft
         {
             get => System.Console.WindowLeft;
+            [SupportedOSPlatform("windows")]
             set => System.Console.WindowLeft = value;
         }
 
         public static int WindowTop
         {
             get => System.Console.WindowTop;
+            [SupportedOSPlatform("windows")]
             set => System.Console.WindowTop = value;
         }
 
         public static int WindowWidth
         {
             get => System.Console.WindowWidth;
+            [SupportedOSPlatform("windows")]
             set => System.Console.WindowWidth = value;
         }
 
@@ -894,7 +905,6 @@ namespace Colorful
             WriteInColorFormatted(WRITELINE_TRAILER, format, args, defaultColor);
         }
         
-#if (!NET40 && !NET45 && !NET451 && !NET452)
 		public static void WriteLineFormatted(FormattableString format, object arg0, Color styledColor, Color defaultColor)
         {
             WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), arg0, styledColor, defaultColor);
@@ -922,7 +932,6 @@ namespace Colorful
         {
             WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), args, defaultColor);
         }
-#endif
 
         public static void WriteLine(char[] buffer, int index, int count)
         {
@@ -1123,6 +1132,7 @@ namespace Colorful
             System.Console.ResetColor();
         }
 
+        [SupportedOSPlatform("windows")]
         public static void SetBufferSize(int width, int height)
         {
             System.Console.SetBufferSize(width, height);
@@ -1148,11 +1158,13 @@ namespace Colorful
             System.Console.SetOut(newOut);
         }
 
+        [SupportedOSPlatform("windows")]
         public static void SetWindowPosition(int left, int top)
         {
             System.Console.SetWindowPosition(left, top);
         }
 
+        [SupportedOSPlatform("windows")]
         public static void SetWindowSize(int width, int height)
         {
             System.Console.SetWindowSize(width, height);
@@ -1163,43 +1175,39 @@ namespace Colorful
             return System.Console.OpenStandardError();
         }
 
-#if !NETSTANDARD2_0
         public static Stream OpenStandardError(int bufferSize)
         {
             return System.Console.OpenStandardError(bufferSize);
         }
-#endif
 
         public static Stream OpenStandardInput()
         {
             return System.Console.OpenStandardInput();
         }
 
-#if !NETSTANDARD2_0
         public static Stream OpenStandardInput(int bufferSize)
         {
             return System.Console.OpenStandardInput(bufferSize);
         }
-#endif
 
         public static Stream OpenStandardOutput()
         {
             return System.Console.OpenStandardOutput();
         }
 
-#if !NETSTANDARD2_0
         public static Stream OpenStandardOutput(int bufferSize)
         {
             return System.Console.OpenStandardOutput(bufferSize);
         }
-#endif
 
+        [SupportedOSPlatform("windows")]
         public static void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight,
             int targetLeft, int targetTop)
         {
             System.Console.MoveBufferArea(sourceLeft, sourceTop, sourceWidth, sourceHeight, targetLeft, targetTop);
         }
 
+        [SupportedOSPlatform("windows")]
         public static void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight,
             int targetLeft, int targetTop, char sourceChar, ConsoleColor sourceForeColor, ConsoleColor sourceBackColor)
         {
@@ -1235,6 +1243,7 @@ namespace Colorful
             ReplaceAllColorsWithDefaults();
         }
 
+        [SupportedOSPlatform("windows")]
         public static void Beep(int frequency, int duration)
         {
             System.Console.Beep(frequency, duration);

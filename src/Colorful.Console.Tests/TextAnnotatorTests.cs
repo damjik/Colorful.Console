@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
-using Colorful;
 using System.Drawing;
 
 namespace Colorful.Console.Tests
@@ -57,7 +54,7 @@ namespace Colorful.Console.Tests
 
             List<KeyValuePair<string, Color>> annotationMap = annotator.GetAnnotationMap(dummyMatchingString);
 
-            Assert.Equal(annotationMap.Count, 3);
+            Assert.Equal(3, annotationMap.Count);
         }
 
         [Fact]
